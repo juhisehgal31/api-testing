@@ -69,6 +69,7 @@ The following endpoints are covered in the tests:
    1. POST /models/{model_id}/versions/{version_id}/infer: Perform inference using a specified Model Version.
 
 ****Project Structure****
+
 api-testing/
 ├── .venv/                              # Virtual environment setup
 ├── allure-results/                     # Directory for Allure report results
@@ -89,6 +90,7 @@ api-testing/
 ├── README.md                           # Documentation for project setup and usage
 ├── report.html                         # Test execution report in HTML format
 └── requirements.txt                    # File containing project dependencies
+
 
 ****Advantages****
 
