@@ -70,27 +70,7 @@ The following endpoints are covered in the tests:
 
 ****Project Structure****
 
-api-testing/
-├── .venv/                              # Virtual environment setup
-├── allure-results/                     # Directory for Allure report results
-├── tests/                              # Directory containing all test scripts
-│   ├── report.html                     # Generated test report in HTML format
-│   ├── test_inference.py               # Test cases for inference-related functionalities
-│   ├── test_model.py                   # Test cases for operations related to Models
-│   └── test_model_version.py           # Test cases for operations related to Model Versions
-├── utils/                              # Directory for utility scripts and test data files
-│   ├── basetest.py                     # Base setup for tests, including cleanup of existing Models
-│   ├── keywordrepository.py            # Utility script for accessing and updating test data in JSON files
-│   ├── model_utils.py                  # Utility functions for managing Models and their Versions
-│   ├── test_inference_data.json        # Test data for inference-related tests
-│   ├── test_model_data.json            # Test data for Model-related tests
-│   └── test_model_version_data.json    # Test data for Model Version-related tests
-├── venv/                               # Directory for the virtual environment setup (or .venv)
-├── pytest.ini                          # Configuration file for pytest settings
-├── README.md                           # Documentation for project setup and usage
-├── report.html                         # Test execution report in HTML format
-└── requirements.txt                    # File containing project dependencies
-
+<img width="806" alt="Screenshot 2024-10-11 at 8 18 19 PM" src="https://github.com/user-attachments/assets/3753fc1e-ca61-48e8-b39f-48fb1bc1bb9d">
 
 ****Advantages****
 
