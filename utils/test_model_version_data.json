@@ -1,0 +1,16 @@
+{
+    "test_add_model_version_with_valid_data": {
+        "name": "MyModel",
+        "owner": "john",
+        "expected_status_code": 200,
+        "id": "1bb15574-5e81-48af-bb96-acaed2515812",
+        "version_name": "TestVersion",
+        "hugging_face_model": "bert-base-uncased",
+        "text": "Hi, how are you?",
+        "model_id": "1bb15574-5e81-48af-bb96-acaed2515812",
+        "version_id": "ac7d8ba6-43a0-468f-9181-6946db00b3ad"
+    },
+    "test_delete_all_existing_models": {
+        "expected_status_code": 200
+    }
+}

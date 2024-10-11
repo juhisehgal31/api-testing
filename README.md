@@ -103,7 +103,7 @@ Advantages
 
 2. Automated Cleanup: Before running new tests, the framework automatically cleans up any previously created models or versions. This helps ensure a fresh testing environment every time.
 
-3. Data-Driven Testing: By using JSON files for test data, it's easy to manage test cases and cover a variety of scenarios. You can easily update or add new cases without changing the code.
+3. Data-Driven Testing:: By using JSON files for test data, it's easy to manage test cases and cover a variety of scenarios. You can easily update or add new cases without changing the code.
 
 4. Comprehensive Reporting: The Allure reports give you a detailed look at the test execution process, showing logs, results, and history, so you know exactly what's happening and where any issues might be.
 
