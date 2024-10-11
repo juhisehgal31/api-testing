@@ -1,115 +1,129 @@
-**Project Description**
-This project provides an automated testing framework for an API that manages Models and Model Versions, including inference functionality. The tests cover endpoints for creating, deleting, and performing operations on Models and their Versions.
+****Project Description****
+This project provides an automated testing framework for an API that manages Models, Model Versions, and inference functionality. It covers endpoints for creating, deleting, and performing various operations on Models and their Versions.
 
-**Prerequisites**
+****Prerequisites****
 1. Install Python:
-Requires Python 3.11. Make sure Python is installed and added to your system's PATH.
+2. Requires Python 3.11. Ensure Python is installed
+3. Set Up a Virtual Environment: python3.11 -m venv venv
+4. Install Dependencies:- pip install -r requirements.txt
 
-2. Set Up a Virtual Environment:
-python3.11 -m venv venv          
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+****Project Utilities****
+The project includes utility scripts and test data management for smooth execution:
 
-3. Install Dependencies:
-pip install -r requirements.txt
+1. **Utilities**:
 
-4. Project Utilities
-The project includes utility scripts and test data management:
+   basetest.py: Ensures a clean test environment by clearing previously created Models and Model Versions before test execution.
+   keywordrepository.py: Provides functions for accessing and updating test data stored in JSON files.
+   model_utils.py: Offers functions for creating and deleting Models and their Versions.
 
-Utilities:
+2. **Test Data:**
 
-basetest.py: Contains methods to clear previously created Models and Model Versions before test execution, ensuring a clean test environment.
-keywordrepository.py: Utility for accessing and updating test data stored in JSON files.
-model_utils.py: Functions for creating and deleting models and their versions.
+   Test data is maintained in JSON files and utilized within the test scripts:
+   test_inference_data.json: Data for inference-related tests.
+   test_model_data.json: Data for model-related tests.
+   test_model_version_data.json: Data for model version-related tests.
 
-Test Data:
-
-Data is fetched from JSON files and used in the test scripts:
-
-test_inference_data.json: Contains test data for inference-related tests.
-test_model_data.json: Contains test data for model-related tests.
-test_model_version_data.json: Contains test data for model version-related tests.
-
-5. Test Scripts
+****Test Scripts****
 All test scripts are located in the tests/ directory and cover various API operations:
 
-test_inference.py: Test cases for inference operations.
-test_model.py: Test cases for managing models, such as adding or deleting a model.
-test_model_version.py: Test cases for managing model versions, such as adding or deleting versions.
+   test_inference.py: Contains test cases for inference operations.
+   test_model.py: Test cases for managing Models, such as adding or deleting a Model.
+   test_model_version.py: Test cases for managing Model Versions, such as adding or deleting Versions.
 
-6. Test Execution
-Setup Before Running Tests:
+****Test Execution****
+Setup Before Running Tests
+Each test script contains a cleanup function to remove any previously created Models and Versions before the tests start, ensuring a clean environment for every run.
 
-Before test execution starts, each test script contains a cleanup function that runs to remove any previously created models and versions. This ensures a clean environment for running tests.
+   **Steps to Run Tests:**
+   1. Clone the Repository: git clone https://github.com/openinnovationai/recruiting-qa-challenge
+   2. Navigate to the Project Directory: cd recruiting-qa-challenge
+   3. Create a Virtual Environment: python3 -m venv venv
+   4. Activate the Virtual Environment: source venv/bin/activate
+   5. Install Dependencies: pip install -r requirements.txt
+   6. Run the Server: fastapi dev application.py
+   7. Execute Tests: pytest --alluredir=allure-results
+      
+****Reporting****
 
-7. Run Tests: pytest --alluredir=allure-results
+   1. Allure Reports:- allure serve allure-results
+   2. HTML Report:- pytest --html=report.html --self-contained-html
 
-8. Reporting:- Allure Reports:
-To view the test reports using Allure:- allure serve allure-results
-
-9. HTML Report:
-
-HTML report can be generated
-pytest --html=report.html --self-contained-html
-
-10. Troubleshooting
+****Troubleshooting****
 Inference Takes Too Long:
-If the inference operation takes longer than expected, ensure that the server is running correctly and consider adjusting the timeout settings in the test scripts.
+If the inference operation is slow, verify that the server is functioning correctly, and adjust the timeout settings in the test scripts if needed.
 
-11API Documentation
+****API Documentation****
 The following endpoints are covered in the tests:
 
-Model Endpoints:
+   **Model Endpoints:**
+   1. GET /models: Fetch all Models.
+   2. POST /models: Create a new Model.
+   3. DELETE /models/{model_id}: Delete a Model by its ID.
+      
+   **Model Version Endpoints:**
+   1. GET /models/{model_id}/versions: Fetch all Versions of a Model.
+   2. POST /models/{model_id}/versions: Add a new Version to a Model.
+   3. DELETE /models/{model_id}/versions/{version_id}: Delete a specific Model Version.
 
-GET /models: Fetch all models.
-POST /models: Create a new model.
-DELETE /models/{model_id}: Delete a model by its ID.
-Model Version Endpoints:
+   **Inference Endpoint:**
+   1. POST /models/{model_id}/versions/{version_id}/infer: Perform inference using a specified Model Version.
 
-GET /models/{model_id}/versions: Fetch all versions of a model.
-POST /models/{model_id}/versions: Add a new version to a model.
-DELETE /models/{model_id}/versions/{version_id}: Delete a specific model version.
-Inference Endpoint:
-
-POST /models/{model_id}/versions/{version_id}/infer: Perform inference using a specified model version.
-   
-
-**Project Structure**
-
-
+****Project Structure****
 api-testing/
-├── .venv/                              # Directory for the virtual environment setup
-├── allure-results/                     # Folder to store results generated by Allure reports
+├── .venv/                              # Virtual environment setup
+├── allure-results/                     # Directory for Allure report results
 ├── tests/                              # Directory containing all test scripts
 │   ├── report.html                     # Generated test report in HTML format
 │   ├── test_inference.py               # Test cases for inference-related functionalities
-│   ├── test_model.py                   # Test cases for operations related to models
-│   └── test_model_version.py           # Test cases for operations related to model versions
-├── utils/                              # Folder for utility scripts and test data files
-│   ├── basetest.py                     # Base setup for tests, including cleanup to remove existing models before tests run
-│   ├── keywordrepository.py            # Utility script for accessing and updating test data stored in JSON files
-│   ├── model_utils.py                  # Utility functions for creating and deleting models and their versions
-│   ├── test_inference_data.json        # JSON file containing test data for inference-related tests
-│   ├── test_model_data.json            # JSON file containing test data for model-related tests
-│   └── test_model_version_data.json    # JSON file containing test data for model version-related tests
-├── venv/                               # Directory for the virtual environment setup (alternatively named .venv)
+│   ├── test_model.py                   # Test cases for operations related to Models
+│   └── test_model_version.py           # Test cases for operations related to Model Versions
+├── utils/                              # Directory for utility scripts and test data files
+│   ├── basetest.py                     # Base setup for tests, including cleanup of existing Models
+│   ├── keywordrepository.py            # Utility script for accessing and updating test data in JSON files
+│   ├── model_utils.py                  # Utility functions for managing Models and their Versions
+│   ├── test_inference_data.json        # Test data for inference-related tests
+│   ├── test_model_data.json            # Test data for Model-related tests
+│   └── test_model_version_data.json    # Test data for Model Version-related tests
+├── venv/                               # Directory for the virtual environment setup (or .venv)
 ├── pytest.ini                          # Configuration file for pytest settings
-├── README.md                           # Documentation for the project, including setup and usage instructions
-├── report.html                         # Generated test execution report in HTML format
-└── requirements.txt                    # File listing the project's dependencies
+├── README.md                           # Documentation for project setup and usage
+├── report.html                         # Test execution report in HTML format
+└── requirements.txt                    # File containing project dependencies
+
+****Advantages****
+
+1. Modular Structure:
+The project is organized with a clear separation between test scripts, utilities, and data, making it easy to manage and extend.
+
+2. Automated Cleanup:
+A clean testing environment is maintained by automatically clearing previously created Models and Versions before running new tests.
+
+3. Data-Driven Testing:
+JSON files are used for test data, allowing easy management of test cases and scenarios without modifying the code.
+
+4. Comprehensive Reporting:
+Allure reports offer detailed insights into the test execution, showing logs, results, and historical data for easy analysis.
+
+5. Reusable Utilities:
+Utility functions for managing Models and performing inference are used across multiple tests, reducing redundancy and promoting best practices.
+
+****Disadvantages****
+1. Slow Inference Tests:
+Inference operations can be time-consuming, leading to longer test execution times.
+
+2. No Parallel Execution of Tests:
+Tests run sequentially, which could become a bottleneck if the number of tests increases significantly.
+
+****Screenshots of Test Report****
+
+<img width="1721" alt="Screenshot 2024-10-11 at 7 49 59 PM" src="https://github.com/user-attachments/assets/4ebcacfb-6b54-41c2-99b6-3761a6d13172">
+<img width="1724" alt="Screenshot 2024-10-11 at 7 51 18 PM" src="https://github.com/user-attachments/assets/69247830-055a-46d7-9995-f1d0161434a1">
+<img width="1728" alt="Screenshot 2024-10-11 at 7 52 28 PM" src="https://github.com/user-attachments/assets/c2c6d10a-7bba-46b4-931a-2f3fb59a6873">
+<img width="1728" alt="Screenshot 2024-10-11 at 7 53 06 PM" src="https://github.com/user-attachments/assets/798edde1-68f5-4502-8d1f-824a92df4473">
 
 
-Advantages
-1. Modular Structure: The project is set up in a neat, organized way with a clear separation between test scripts, utilities, and data. This makes it easy to manage, extend, and keep everything in its place.
 
-2. Automated Cleanup: Before running new tests, the framework automatically cleans up any previously created models or versions. This helps ensure a fresh testing environment every time.
 
-3. Data-Driven Testing:: By using JSON files for test data, it's easy to manage test cases and cover a variety of scenarios. You can easily update or add new cases without changing the code.
 
-4. Comprehensive Reporting: The Allure reports give you a detailed look at the test execution process, showing logs, results, and history, so you know exactly what's happening and where any issues might be.
 
-5. Reusable Utilities: The utility functions for managing models and performing inference can be used across multiple tests, reducing code duplication and promoting best practices.
 
-Disadvantages
-1. Slow Inference Tests: Inference operations can take a long time to complete, which slows down the overall test execution.
-
-2. No Parallel Execution of Tests: Tests run one after another, which is manageable for now since there are only a few tests, but could become a bottleneck if more tests are added in the future.
